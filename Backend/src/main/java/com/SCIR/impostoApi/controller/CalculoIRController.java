@@ -3,6 +3,7 @@ package com.SCIR.impostoApi.controller;
 import com.SCIR.impostoApi.dto.CalculoIRDto;
 import com.SCIR.impostoApi.service.CalculoIRService;
 import com.SCIR.impostoApi.service.ImpostoRendaService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,13 +22,6 @@ public class CalculoIRController {
     }
 
 
-
-//    @PostMapping
-//    public ResponseEntity<Void> salvar(@RequestBody CalculoIRDto dto) {
-//        service.salvar(dto);
-//        return ResponseEntity.ok().build();
-//    }
-
     @PostMapping
     public ResponseEntity<CalculoIRDto> calcularImpostoESalvar(@RequestBody CalculoIRDto dto) {
         CalculoIRDto resultado = impostoRendaService.calcularEGuardar(dto);
@@ -40,6 +34,14 @@ public class CalculoIRController {
         List<CalculoIRDto> list = calculoIRService.buscarTodos();
         return ResponseEntity.ok(list);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<CalculoIRDto> deleteCalculoIr(@PathVariable Long id) {
+        calculoIRService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> handleInvalidInput(IllegalArgumentException ex) {

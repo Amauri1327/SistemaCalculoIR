@@ -7,7 +7,6 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,19 +21,6 @@ public class CalculoIRRepository {
         entityManager.persist(calculoIR);
     }
 
-//    @Transactional
-//    public void salvar (CalculoIRDto dto) {
-//        entityManager.createNativeQuery(
-//                "INSERT INTO calculo_ir (renda_anual, dependentes, despesas_educacao, imposto_calculado, data_hora)" +
-//                        "VALUES (:rendaAnual, :dependentes, :despesasEducacao, :impostoCalculado, :dataHora)")
-//                .setParameter("rendaAnual", dto.getRendaAnual())
-//                .setParameter("dependentes", dto.getDependentes())
-//                .setParameter("despesasEducacao", dto.getDespesasEducacao())
-//                .setParameter("impostoCalculado", dto.getImpostoCalculado())
-//                .setParameter("dataHora", LocalDateTime.now())
-//                .executeUpdate();
-//    }
-
     public List<CalculoIRDto> buscarTodos() {
         List<Object[]> resultados = entityManager.createNativeQuery(
                         "SELECT id, renda_anual, dependentes, despesas_educacao, imposto_calculado, data_hora " +
@@ -44,6 +30,25 @@ public class CalculoIRRepository {
         return resultados.stream()
                 .map(this::mapearParaDto)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        if(!existedId(id)){
+            throw new RuntimeException("ID não encontrado: " + id);
+        }
+        entityManager.createNativeQuery("DELETE FROM calculo_ir WHERE id = :id")
+                .setParameter("id", id)
+                .executeUpdate();
+    }
+
+
+    private boolean existedId(Long id) {
+        Long count = (Long) entityManager.createNativeQuery(
+                "SELECT COUNT(*) FROM calculo_ir WHERE id = :id")
+                .setParameter("id", id)
+                .getSingleResult();
+        return count > 0;
     }
 
     private CalculoIRDto mapearParaDto(Object[] registro) {

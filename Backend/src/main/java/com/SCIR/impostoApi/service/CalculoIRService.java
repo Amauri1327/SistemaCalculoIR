@@ -32,4 +32,13 @@ public class CalculoIRService {
         return repository.buscarTodos();
     }
 
+    public void delete(Long id){
+        try {
+            repository.delete(id);
+        } catch (RuntimeException e) {
+            throw new IllegalArgumentException("Error ao deletar o ID: " + id + " - " + e.getMessage());
+        }
+    }
+
+
 }
