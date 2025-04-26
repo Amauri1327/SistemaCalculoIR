@@ -40,5 +40,10 @@ public class CalculoIRService {
         }
     }
 
+    public void atualizar(Long id, CalculoIRDto dto) {
+        repository.atualizar(id, dto);
+    }
+
+
 
 }

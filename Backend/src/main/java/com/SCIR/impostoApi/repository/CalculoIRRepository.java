@@ -42,6 +42,34 @@ public class CalculoIRRepository {
                 .executeUpdate();
     }
 
+    @Transactional
+    public void atualizar(Long id, CalculoIRDto dto) {
+        if (!existedId(id)) {
+            throw new RuntimeException("ID não encontrado: " + id);
+        }
+        String sql = "UPDATE calculo_ir " +
+                "SET renda_anual = :rendaAnual, " +
+                "dependentes = :dependentes, " +
+                "despesas_educacao = :despesasEducacao, " +
+                "imposto_calculado = :impostoCalculado, " +
+                "data_hora = :dataHora " +
+                "WHERE id = :id";
+        // atualizando
+        try {
+            entityManager.createNativeQuery(sql)
+                    .setParameter("rendaAnual", dto.getRendaAnual())
+                    .setParameter("dependentes", dto.getDependentes())
+                    .setParameter("despesasEducacao", dto.getDespesasEducacao())
+                    .setParameter("impostoCalculado", dto.getImpostoCalculado())
+                    .setParameter("dataHora", dto.getDataHora())
+                    .setParameter("id", id)
+                    .executeUpdate();
+        } catch (Exception e) {
+            throw new RuntimeException("Não foi encontrado nenhum registro ID : " + id);
+        }
+
+    }
+
 
     private boolean existedId(Long id) {
         Long count = (Long) entityManager.createNativeQuery(
