@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 public class CalculoIRDto {
 
+    private Long id;
     private Double rendaAnual;
     private Integer dependentes;
     private Double despesasEducacao;
@@ -12,12 +13,13 @@ public class CalculoIRDto {
 
     public CalculoIRDto(){}
 
-    public CalculoIRDto(Double rendaAnual, Integer dependentes, Double despesasEducacao, Double impostoCalculado, LocalDateTime dataHora) {
+    public CalculoIRDto(Double rendaAnual, Integer dependentes, Double despesasEducacao, Double impostoCalculado, LocalDateTime dataHora, Long id) {
         this.rendaAnual = rendaAnual;
         this.dependentes = dependentes;
         this.despesasEducacao = despesasEducacao;
         this.impostoCalculado = impostoCalculado;
         this.dataHora = dataHora;
+        this.id = id;
     }
 
     public Double getRendaAnual() {
@@ -58,5 +60,13 @@ public class CalculoIRDto {
 
     public void setDataHora(LocalDateTime dataHora) {
         this.dataHora = dataHora;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

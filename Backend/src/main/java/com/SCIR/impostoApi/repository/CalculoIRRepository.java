@@ -7,6 +7,8 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class CalculoIRRepository {
@@ -26,6 +28,29 @@ public class CalculoIRRepository {
                 .setParameter("dataHora", LocalDateTime.now())
                 .executeUpdate();
     }
+
+    public List<CalculoIRDto> buscarTodos() {
+        List<Object[]> resultados = entityManager.createNativeQuery(
+                        "SELECT id, renda_anual, dependentes, despesas_educacao, imposto_calculado, data_hora " +
+                                "FROM calculo_ir ")
+                .getResultList();
+
+        return resultados.stream()
+                .map(this::mapearParaDto)
+                .collect(Collectors.toList());
+    }
+
+    private CalculoIRDto mapearParaDto(Object[] registro) {
+        CalculoIRDto dto = new CalculoIRDto();
+        dto.setId((Long) registro[0]);
+        dto.setRendaAnual((Double) registro[1]);
+        dto.setDependentes((Integer) registro[2]);
+        dto.setDespesasEducacao((Double) registro[3]);
+        dto.setImpostoCalculado((Double) registro[4]);
+        dto.setDataHora(((java.sql.Timestamp) registro[5]).toLocalDateTime());
+        return dto;
+    }
+
 
 
 
