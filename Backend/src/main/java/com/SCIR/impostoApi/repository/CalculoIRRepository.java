@@ -23,7 +23,7 @@ public class CalculoIRRepository {
 
     public List<CalculoIRDto> buscarTodos() {
         List<Object[]> resultados = entityManager.createNativeQuery(
-                        "SELECT id, renda_anual, dependentes, despesas_educacao, imposto_calculado, data_hora " +
+                        "SELECT id, renda_anual, dependentes, despesas_educacao, imposto_calculado, data_hora, faixa_aliquota_aplicada " +
                                 "FROM calculo_ir ")
                 .getResultList();
 
@@ -34,7 +34,7 @@ public class CalculoIRRepository {
 
     public CalculoIRDto buscarPorId(Long id) {
         List<Object[]> resultados = entityManager.createNativeQuery(
-                "SELECT id, renda_anual, dependentes, despesas_educacao, imposto_calculado, data_hora " +
+                "SELECT id, renda_anual, dependentes, despesas_educacao, imposto_calculado, data_hora, faixa_aliquota_aplicada " +
                         "FROM calculo_ir WHERE id = :id")
                 .setParameter("id", id)
                 .getResultList();
@@ -65,6 +65,7 @@ public class CalculoIRRepository {
                 "despesas_educacao = :despesasEducacao, " +
                 "imposto_calculado = :impostoCalculado, " +
                 "data_hora = :dataHora " +
+                "faixa_aliquota_aplicada = :faixaAliquotaAplicada" +
                 "WHERE id = :id";
         // atualizando
         try {
@@ -75,6 +76,7 @@ public class CalculoIRRepository {
                     .setParameter("impostoCalculado", dto.getImpostoCalculado())
                     .setParameter("dataHora", dto.getDataHora())
                     .setParameter("id", id)
+                    .setParameter("faixaAliquotaAplicada", dto.getFaixaAliquotaAplicada())
                     .executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException("Não foi encontrado nenhum registro ID : " + id);
@@ -99,6 +101,7 @@ public class CalculoIRRepository {
         dto.setDespesasEducacao((Double) registro[3]);
         dto.setImpostoCalculado((Double) registro[4]);
         dto.setDataHora(((java.sql.Timestamp) registro[5]).toLocalDateTime());
+        dto.setFaixaAliquotaAplicada((String) registro[6]);
         return dto;
     }
 

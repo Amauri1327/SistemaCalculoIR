@@ -3,8 +3,6 @@ package com.SCIR.impostoApi.controller;
 import com.SCIR.impostoApi.dto.CalculoIRDto;
 import com.SCIR.impostoApi.service.CalculoIRService;
 import com.SCIR.impostoApi.service.ImpostoRendaService;
-import org.apache.coyote.Response;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +23,7 @@ public class CalculoIRController {
 
     @PostMapping
     public ResponseEntity<CalculoIRDto> calcularImpostoESalvar(@RequestBody CalculoIRDto dto) {
-        CalculoIRDto resultado = impostoRendaService.calcularEGuardar(dto);
+        CalculoIRDto resultado = impostoRendaService.calcularImposto(dto);
         return ResponseEntity.ok(resultado);
     }
 

@@ -10,16 +10,19 @@ public class CalculoIRDto {
     private Double despesasEducacao;
     private Double impostoCalculado;
     private LocalDateTime dataHora;
+    private String faixaAliquotaAplicada;
+
 
     public CalculoIRDto(){}
 
-    public CalculoIRDto(Double rendaAnual, Integer dependentes, Double despesasEducacao, Double impostoCalculado, LocalDateTime dataHora, Long id) {
+    public CalculoIRDto(Double rendaAnual, Integer dependentes, Double despesasEducacao, Double impostoCalculado, LocalDateTime dataHora, Long id, String faixaAliquotaAplicada) {
         this.rendaAnual = rendaAnual;
         this.dependentes = dependentes;
         this.despesasEducacao = despesasEducacao;
         this.impostoCalculado = impostoCalculado;
         this.dataHora = dataHora;
         this.id = id;
+        this.faixaAliquotaAplicada = faixaAliquotaAplicada;
     }
 
     public Double getRendaAnual() {
@@ -68,5 +71,13 @@ public class CalculoIRDto {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getFaixaAliquotaAplicada() {
+        return faixaAliquotaAplicada;
+    }
+
+    public void setFaixaAliquotaAplicada(String faixaAliquotaAplicada) {
+        this.faixaAliquotaAplicada = faixaAliquotaAplicada;
     }
 }
