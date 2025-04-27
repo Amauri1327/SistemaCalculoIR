@@ -32,6 +32,18 @@ public class CalculoIRRepository {
                 .collect(Collectors.toList());
     }
 
+    public CalculoIRDto buscarPorId(Long id) {
+        List<Object[]> resultados = entityManager.createNativeQuery(
+                "SELECT id, renda_anual, dependentes, despesas_educacao, imposto_calculado, data_hora " +
+                        "FROM calculo_ir WHERE id = :id")
+                .setParameter("id", id)
+                .getResultList();
+        if (resultados.isEmpty()){
+            throw new IllegalArgumentException("Id nao encontrado id: " + id);
+        }
+        return mapearParaDto(resultados.get(0));
+    }
+
     @Transactional
     public void delete(Long id) {
         if(!existedId(id)){

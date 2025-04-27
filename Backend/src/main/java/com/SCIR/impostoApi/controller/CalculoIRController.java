@@ -36,6 +36,13 @@ public class CalculoIRController {
         return ResponseEntity.ok(list);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<CalculoIRDto> buscarPorId(@PathVariable Long id) {
+        CalculoIRDto dto = calculoIRService.buscarPorId(id);
+        return ResponseEntity.ok().body(dto);
+    }
+
+
     @PutMapping("/{id}")
     public ResponseEntity<Void> atualizarCalculoIR(@PathVariable Long id, @RequestBody CalculoIRDto dto) {
         calculoIRService.atualizar(id, dto);

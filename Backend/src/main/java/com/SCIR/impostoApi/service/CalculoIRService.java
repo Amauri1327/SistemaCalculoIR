@@ -32,6 +32,10 @@ public class CalculoIRService {
         return repository.buscarTodos();
     }
 
+    public CalculoIRDto buscarPorId(Long id){
+        return repository.buscarPorId(id);
+    }
+
     public void delete(Long id){
         try {
             repository.delete(id);
