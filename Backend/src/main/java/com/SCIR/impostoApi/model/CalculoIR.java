@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class CalculoIR {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private Double rendaAnual;
     private Integer dependentes;
