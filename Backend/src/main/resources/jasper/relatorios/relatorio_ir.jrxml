@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio_ir" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="078b616e-b207-4d45-b4d4-14b02ee6a808">
+	<parameter name="rendaAnual" class="java.lang.Double"/>
+	<parameter name="dependentes" class="java.lang.Integer"/>
+	<parameter name="despesasEducacao" class="java.lang.Double"/>
+	<parameter name="impostoCalculado" class="java.lang.Double"/>
+	<parameter name="dataHora" class="java.util.Date"/>
+	<parameter name="faixaAliquotaAplicada" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="83" splitType="Stretch">
+			<staticText>
+				<reportElement x="165" y="10" width="225" height="30" uuid="42d8ba0a-55f4-4230-9067-3e45eca0485d"/>
+				<textElement>
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatorio IR 2025]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="60" width="555" height="1" uuid="420986ca-04f8-4b89-a22a-e3d3e2d67c7b"/>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="69a8c9e7-dd99-4a9c-9c44-450f87cd450a"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="213" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="30" backcolor="#A6A6A6" uuid="05a738c6-f7f9-4afb-91a7-7fcd872227e1"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="140" width="555" height="30" backcolor="#A6A6A6" uuid="400e8920-13c2-4921-b5e3-f276ce3d735f"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="140" width="270" height="30" uuid="3a2b792a-cd2e-4439-ba9e-f136efaaf2b2"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dedução consideradas no cálculo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="170" width="300" height="39" uuid="8d32884d-3937-42c6-a1bf-77b93ab3ab3f"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[- Dependente: R$ 2.275,08 por ano;
+- Despesas com educação: até R$ 3.561,50]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="179" height="30" uuid="a003f8aa-f1c2-4c39-a6cd-376a6beb2b60"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Faixa de Renda (R$)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="187" y="0" width="179" height="30" uuid="f61732ee-65e3-4991-93af-e6c3d0bbffa6"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Alíquotas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="376" y="0" width="179" height="30" uuid="4f1c5843-4faa-45e5-b1dd-46fe78e806a0"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Parcela a Deduzir (R$)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="179" height="99" uuid="9e0a08d7-d506-4438-95f6-64c8f86d5ba0"/>
+				<textElement textAlignment="Center">
+					<font size="11"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<text><![CDATA[Até 1.903.98
+De 1.903,99 até 2.826,65
+De 2.826,66 até 3.751,05 
+De 3.751,06 até 4.664,68 
+Acima de 4.664,68]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="187" y="30" width="179" height="99" uuid="43efaaec-1676-4a42-abf2-dfd9e82f3288"/>
+				<textElement textAlignment="Center">
+					<font size="11"/>
+					<paragraph lineSpacing="1_1_2" lineSpacingSize="1.0"/>
+				</textElement>
+				<text><![CDATA[0% 
+7,5%
+15%
+22,5% 
+27,5%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="375" y="30" width="179" height="99" uuid="1e9d783a-f7eb-4af3-859f-9a794afb4e38"/>
+				<textElement textAlignment="Center">
+					<font size="11"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<text><![CDATA[0 
+142,80
+354,80
+636,13 
+869,36]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="210" width="555" height="1" uuid="a875f39c-e051-4d85-b297-f447cd663db2"/>
+			</line>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="194" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy HH:mm">
+				<reportElement x="0" y="0" width="119" height="20" uuid="31b979e3-f04c-45bc-a164-d1b40a7eb110"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Data da Geração: "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="20" width="280" height="20" uuid="4ea01440-049d-4b4a-9c62-acfe995d6c6c"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Renda Anual Informada: " + $P{rendaAnual}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="40" width="280" height="20" uuid="c64b254f-0aaf-4313-8863-f36124e3dae9"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Quantidade de Dependentes: " + $P{dependentes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="60" width="280" height="20" uuid="afa4163b-5325-49b3-b517-da78a249e6a4"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Despesas com Educação: " + $P{despesasEducacao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="110" width="280" height="20" uuid="e2265467-cff9-4111-98a0-3a381bb7b9a8"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Valor Final do Imposto a Pagar:  R$ " + $P{impostoCalculado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="80" width="280" height="20" uuid="308fb6db-42fc-4303-ad3c-232e94bb1eb3"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Faixa de alíquota aplicada: " + $P{faixaAliquotaAplicada}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy HH:mm">
+				<reportElement x="100" y="0" width="119" height="20" uuid="a994bbd6-d86b-4f78-828a-c2e5ccd0a69e"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dataHora}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

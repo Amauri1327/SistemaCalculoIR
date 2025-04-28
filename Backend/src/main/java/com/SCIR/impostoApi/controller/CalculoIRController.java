@@ -3,9 +3,14 @@ package com.SCIR.impostoApi.controller;
 import com.SCIR.impostoApi.dto.CalculoIRDto;
 import com.SCIR.impostoApi.service.CalculoIRService;
 import com.SCIR.impostoApi.service.ImpostoRendaService;
+import com.SCIR.impostoApi.service.JasperReportService;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 @RestController
@@ -14,18 +19,32 @@ public class CalculoIRController {
 
     private CalculoIRService calculoIRService;
     private ImpostoRendaService impostoRendaService;
+    private JasperReportService jasperReportService;
 
-    public CalculoIRController(CalculoIRService calculoIRService, ImpostoRendaService impostoRendaService) {
+    public CalculoIRController(CalculoIRService calculoIRService, ImpostoRendaService impostoRendaService, JasperReportService jasperReportService) {
         this.calculoIRService = calculoIRService;
         this.impostoRendaService = impostoRendaService;
+        this.jasperReportService = jasperReportService;
     }
 
 
     @PostMapping
     public ResponseEntity<CalculoIRDto> calcularImpostoESalvar(@RequestBody CalculoIRDto dto) {
         CalculoIRDto resultado = impostoRendaService.calcularImposto(dto);
+
+        try {
+            jasperReportService.gerar(resultado);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("Error ao gerar pdf " + e.getMessage());
+        }
+
         return ResponseEntity.ok(resultado);
     }
+
+//    @PostMapping("/relatorio")
+//    public void gerar(@RequestBody CalculoIRDto calculoIRDto) throws FileNotFoundException {
+//        this.jasperReportService.gerar(calculoIRDto);
+//    }
 
 
     @GetMapping
