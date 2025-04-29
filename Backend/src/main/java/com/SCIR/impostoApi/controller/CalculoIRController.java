@@ -4,9 +4,6 @@ import com.SCIR.impostoApi.dto.CalculoIRDto;
 import com.SCIR.impostoApi.service.CalculoIRService;
 import com.SCIR.impostoApi.service.ImpostoRendaService;
 import com.SCIR.impostoApi.service.JasperReportService;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,12 +37,7 @@ public class CalculoIRController {
 
         return ResponseEntity.ok(resultado);
     }
-
-//    @PostMapping("/relatorio")
-//    public void gerar(@RequestBody CalculoIRDto calculoIRDto) throws FileNotFoundException {
-//        this.jasperReportService.gerar(calculoIRDto);
-//    }
-
+    
 
     @GetMapping
     public ResponseEntity<List<CalculoIRDto>> buscarTodos() {
